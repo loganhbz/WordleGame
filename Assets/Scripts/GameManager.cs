@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
             return;
 
         // Add letter to line word
-        lineWord += letter;
+        lineWord += letter.ToLower();
 
         // get the current opening visual
         Transform currSpot = lines.transform.GetChild(lineCount).GetChild(letterCount).GetChild(0);
@@ -126,12 +126,17 @@ public class GameManager : MonoBehaviour
         if (lineWord.Length != 5)
             return;
 
+        // Check if lineWord is a valid word
+        // TODO: Play animation/sound/text to notify player they need to type a valid word
+        if (!words.Contains(lineWord))
+            return;
+
 
         // Iterate through the letters and check them against the chosen word
         for (int i = 0; i < 5; i++)
         {
             // Current letter
-            string currLetter = lineWord[i].ToString().ToLower();
+            string currLetter = lineWord[i].ToString();
 
             // Current keyboard key
             Image currKey = keyImages[i];
