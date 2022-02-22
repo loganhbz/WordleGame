@@ -157,8 +157,12 @@ public class GameManager : MonoBehaviour
                 // Wrong spot
                 else
                 {
-                    ChangeColor(currKey, Color.yellow);
-                    ChangeColor(currVis, Color.yellow);
+                    // Check not already green
+                    // Caused by having double letters
+                    if (!currKey.color.Equals(Color.green))
+                        ChangeColor(currKey, Color.yellow);
+                    if (!currVis.color.Equals(Color.green))
+                        ChangeColor(currVis, Color.yellow);
                 }
             }
             // Wrong letter
